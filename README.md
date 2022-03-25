@@ -1,7 +1,5 @@
 # Docker Proxy Squid
 
-Docker para proxy-squid con/sin LDAP
-
 ## Instalación 🔧
 
 * Eliga el tipo de proxy que utlizara, renombrando el archivo
