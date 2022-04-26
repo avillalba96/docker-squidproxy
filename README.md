@@ -21,3 +21,7 @@ docker kill -s HUP proxy
 docker exec -it proxy bash
 squid3 -k parse
 ```
+## Autores ✒️
+
+- **Maximiliano Baez** - *Trabajo Inicial* - [Pablo Ramos](https://github.com/MaximilianoBz)
+- **Alejandro Villalba** - *Colaboracion* - [Alejandro Villalba](https://github.com/avillalba96)
