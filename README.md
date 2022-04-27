@@ -23,5 +23,5 @@ squid3 -k parse
 ```
 ## Autores ✒️
 
-- **Maximiliano Baez** - *Trabajo Inicial* - [Pablo Ramos](https://github.com/MaximilianoBz)
+- **Maximiliano Baez** - *Trabajo Inicial* - [Maximiliano Baez](https://github.com/MaximilianoBz)
 - **Alejandro Villalba** - *Colaboracion* - [Alejandro Villalba](https://github.com/avillalba96)
