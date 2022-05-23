@@ -21,7 +21,12 @@ docker kill -s HUP proxy
 docker exec -it proxy bash
 squid3 -k parse
 ```
+
 ## Autores ✒️
 
 - **Maximiliano Baez** - *Trabajo Inicial* - [Maximiliano Baez](https://github.com/MaximilianoBz)
 - **Alejandro Villalba** - *Colaboracion* - [Alejandro Villalba](https://github.com/avillalba96)
+
+## **TAREAS**
+
+0- Usar "kill" hacer que deje de funcionar logrotate, hace que los logs salgan por consola y no los guarde.
