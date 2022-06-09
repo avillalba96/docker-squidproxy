@@ -43,12 +43,18 @@ acl archivos_bloqueados urlpath_regex -i "/etc/squid/acl/acl_archivos_bloqueados
 acl windows_updates dstdomain "/etc/squid/acl/acl_windows_updates"
 # Sitios siempre permitidos y/o sin cache 
 acl sitios_permitidos dstdomain "/etc/squid/acl/acl_sitios_permitidos"
+acl ip_permitidos dst "/etc/squid/acl/ip_permitidos"
 #acl sitios_sin_cache dstdomain /etc/squid/acl/acl_sitios_sincache
 # Sitios multimedia
 acl sitios_radio dstdomain "/etc/squid/acl/acl_radios"
 acl sitios_streaming dstdomain "/etc/squid/acl/acl_streaming"
 # Redes sociales
 acl sitios_social   dstdomain "/etc/squid/acl/acl_social"
+# WEBS sin AUTH permitido para todos
+acl sitios_sin_auth dstdomain "/etc/squid/acl/acl_sin_auth"
+# ESET permitido para todos
+acl sitios_eset dstdomain "/etc/squid/acl/acl_eset"
+
 
 #################################################################################################################################################
 ### TAG: Configuracion SQUID ###
@@ -124,22 +130,27 @@ http_access deny !Safe_ports
 # Denegar CONNECT a puertos no definidos en SSL_ports
 http_access deny CONNECT !SSL_ports !SSH_ports !FTP_ports
 #http_reply_access deny no_mimes
-# Sitios para todos
+## Sitios para todos
+http_access allow ip_permitidos
 http_access allow sitios_basicos
 no_cache allow sitios_basicos
+# Sitios sin auth - Bypass auth
+http_access allow sitios_sin_auth
+# Sitios eset - Bypass
+http_access allow sitios_eset
 # Sitios bloqueados para todos
 http_access deny sitios_porno alias_porno
 # TAG: -- Denegamos usuarios no autenticados ---
 http_access deny !Authenticated_Users
 # Internet libre
-http_access allow AD_InternetFull #!sitios_porno !alias_porno
+http_access allow AD_InternetFull !sitios_porno !alias_porno
 # Internet limitado
-http_access allow AD_InternetLimitado sitios_permitidos #!sitios_bloqueados !sitios_porno !alias_porno !sitios_radio
+http_access allow AD_InternetLimitado sitios_permitidos !sitios_bloqueados !sitios_porno !alias_porno !sitios_radio
 # Streaming
-http_access allow AD_InternetStreaming sitios_streaming #sitios_radio !sitios_bloqueados !sitios_porno !alias_porno
+http_access allow AD_InternetStreaming sitios_streaming sitios_radio !sitios_bloqueados !sitios_porno !alias_porno
 # Social
-http_access allow AD_InternetSocial sitios_social #!sitios_bloqueados !sitios_porno !alias_porno !sitios_radio
-#
+http_access allow AD_InternetSocial sitios_social !sitios_bloqueados !sitios_porno !alias_porno !sitios_radio
+# Implicito
 http_access deny all
 
 ################################################################################################################################################# HAVP ###################################################################################

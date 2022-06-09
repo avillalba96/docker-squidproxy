@@ -29,4 +29,10 @@ squid3 -k parse
 
 ## **TAREAS**
 
-0- Usar "kill" hacer que deje de funcionar logrotate, hace que los logs salgan por consola y no los guarde.
+0. Usar "kill" hacer que deje de funcionar logrotate, hace que los logs salgan por consola y no los guarde.
+
+```bash
+# forward request and error logs to docker log collector
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+	&& ln -sf /dev/stderr /var/log/nginx/error.log
+```
