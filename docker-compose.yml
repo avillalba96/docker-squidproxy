@@ -2,6 +2,7 @@ version: "3.6"
 services:
   proxy:
     image: avillalba96/docker-squidproxy:1.1
+#    image: squid-ldap:0.9
     container_name: 'proxy'
     hostname: proxy
     ports:
